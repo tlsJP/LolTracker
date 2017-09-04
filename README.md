@@ -1,1 +1,1 @@
-LolTracker
+com.jp.LolTracker
