@@ -23,6 +23,10 @@ dependencies {
     // Spring
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    compile 'org.thymeleaf:thymeleaf:3.0.7.RELEASE'
+    compile 'org.thymeleaf:thymeleaf-spring4:3.0.7.RELEASE'
+    compile 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:2.2.2'
+    compile 'ma.glasnost.orika:orika-core:1.5.1'
 
     compile 'commons-lang:commons-lang:2.6'
     //compile 'org.slf4j:slf4j-simple:1.6.1'
