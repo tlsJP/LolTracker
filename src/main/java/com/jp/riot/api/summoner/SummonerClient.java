@@ -1,10 +1,12 @@
 package com.jp.riot.api.summoner;
 
+import com.jp.domain.Summoner;
+import com.jp.riot.api.league.LeagueClient;
+import ma.glasnost.orika.MapperFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -29,13 +31,13 @@ public class SummonerClient {
     @Value("${riot.api.key}")
     private String apiKey;
 
-//    @Scheduled(fixedRate = 10000)
-    private void doGet() {
-        getSummonerByName("tlsjpa");
-    }
+    @Autowired
+    private MapperFacade mapper;
 
-    public SummonerDto getSummonerByName(String summonerName) {
+    @Autowired
+    private LeagueClient leagueClient;
 
+    public Summoner getSummonerByName(String summonerName) {
 
         Map<String, String> parameters = new HashMap<>();
         parameters.put("summonerName", summonerName);
@@ -43,11 +45,11 @@ public class SummonerClient {
 
         SummonerDto result = restTemplate.getForObject(endpoint + GET_BY_SUMMONER, SummonerDto.class, parameters);
 
-        // This works
-        //ResponseEntity<String> result = restTemplate.getForEntity("https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/tlsjpa?api_key=RGAPI-d329a19d-6c89-4318-a7c1-bed8d182ec76", String.class);
 
+        Summoner summoner = mapper.map(result, Summoner.class);
 
-        logger.info("{}", result);
-        return result;
+        summoner.getLeagues().addAll(leagueClient.getLeaguesBySummonerId(summoner.getId()));
+
+        return  summoner;
     }
 }
