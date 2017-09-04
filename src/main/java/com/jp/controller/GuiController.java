@@ -1,6 +1,7 @@
-package com.jp.com.jp.controller;
+package com.jp.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jp.domain.Summoner;
 import com.jp.riot.api.summoner.SummonerClient;
 import com.jp.riot.api.summoner.SummonerDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,20 +20,17 @@ public class GuiController {
     @Autowired
     SummonerClient summonerClient;
 
-
     @RequestMapping("/")
     public String index(Model model){
-        SummonerDto response = summonerClient.getSummonerByName("tlsjpa");
+        Summoner response = summonerClient.getSummonerByName("tlsjpa");
 
         model.addAttribute("summoner", response);
-
-
 
         return "index";
     }
 
     @RequestMapping(value="/summoner",produces = "application/json")
-    public @ResponseBody SummonerDto toJson(@RequestParam(value="summonerName")String summonerName){
+    public @ResponseBody Summoner toJson(@RequestParam(value="summonerName")String summonerName){
 
 //        ObjectMapper mapper;
 
