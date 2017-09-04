@@ -1,0 +1,64 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<div class="container" th:fragment="league (l)">
+
+    <table class="table">
+
+        <tr>
+            <td>Queue Type</td>
+            <td><p th:text="${l.queueType}"/></td>
+        </tr>
+        <tr>
+            <td>Tier</td>
+            <td><p th:text="${l.tier}"/></td>
+        </tr>
+        <tr>
+            <td>Rank</td>
+            <td><p th:text="${l.rank}"/></td>
+        </tr>
+        <tr>
+            <td>LP</td>
+            <td><p th:text="${l.leaguePoints}"/></td>
+        </tr>
+    </table>
+
+    <!--<div class="container">-->
+
+    <!--<div class="row">-->
+    <!--<div class="col-md-3">-->
+    <!--Queue Type-->
+    <!--</div>-->
+    <!--<div class="col-md-3">-->
+    <!--<p th:text="${l.queueType}"/>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="row">-->
+    <!--<div class="col-md-3">-->
+    <!--Tier-->
+    <!--</div>-->
+    <!--<div class="col-md-3">-->
+    <!--<p th:text="${l.tier}"/>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="row">-->
+    <!--<div class="col-md-3">-->
+    <!--Rank-->
+    <!--</div>-->
+    <!--<div class="col-md-3">-->
+    <!--<p th:text="${l.rank}"/>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="row">-->
+    <!--<div class="col-md-3">-->
+    <!--LP-->
+    <!--</div>-->
+    <!--<div class="col-md-3">-->
+    <!--<p th:text="${l.leaguePoints}"/>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+</div>
+</body>
+
+</html>
