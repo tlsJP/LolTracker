@@ -1,6 +1,7 @@
 package com.jp.riot.api.summoner;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 
 /**
  * Created by JP on 9/3/2017.
@@ -47,6 +48,6 @@ public class SummonerDto {
 
     @Override
     public String toString() {
-        return ToStringBuilder.reflectionToString(this);
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
 }

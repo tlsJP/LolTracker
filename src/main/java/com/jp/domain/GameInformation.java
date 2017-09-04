@@ -1,15 +1,12 @@
-package com.jp.riot.api.spectator;
+package com.jp.domain;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
-
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
- * Created by JP on 9/3/2017.
+ * Created by JP on 9/4/2017.
  */
-public class CurrentGameInfo {
+public class GameInformation {
 
     private Long gameId;
     private Long gameStartTime;
@@ -17,16 +14,8 @@ public class CurrentGameInfo {
     private String gameMode;
     private Long mapId;
     private String gameType;
-    private Collection<BannedChampion> bannedChampions;
 
-    private Collection<CurrentGameParticipant> participants;
-
-    public Collection<BannedChampion> getBannedChampions() {
-        if (this.bannedChampions == null) {
-            this.bannedChampions = new ArrayList<>();
-        }
-        return bannedChampions;
-    }
+    private Set<Summoner> participants;
 
     public Long getGameId() {
         return gameId;
@@ -48,9 +37,9 @@ public class CurrentGameInfo {
         return mapId;
     }
 
-    public Collection<CurrentGameParticipant> getParticipants() {
-        if (this.participants == null) {
-            this.participants = new ArrayList<>();
+    public Set<Summoner> getParticipants() {
+        if (participants == null) {
+            participants = new HashSet<>();
         }
         return participants;
     }
@@ -81,11 +70,6 @@ public class CurrentGameInfo {
 
     public void setPlatformId(String platformId) {
         this.platformId = platformId;
-    }
-
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 
 }
