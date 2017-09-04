@@ -1,0 +1,13 @@
+
+
+riot:
+  api:
+    key: SOME_KEY
+    url:
+      na: 'https://na1.api.riotgames.com'
+      apiKey: '?api_key={apiKey}'
+      league: '/lol/league/v3/positions/by-summoner/{summonerId}'
+      summoner: '/lol/summoner/v3/summoners/by-name/{summonerName}'
+      spectator: '/lol/spectator/v3/active-games/by-summoner/{summonerId}'
+  tlsjpa:
+    id: 20022284
