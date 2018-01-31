@@ -1,5 +1,10 @@
 package com.jp.domain;
 
+
+
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,9 +13,11 @@ import java.util.Set;
  */
 public class Summoner {
 
+
+    private Long id;
+
     private String name;
     private Long summonerLevel;
-    private Long id;
     private Long accountId;
     private Set<Encounter> encounters;
     private Set<League> leagues;
@@ -79,5 +86,10 @@ public class Summoner {
         this.summonerLevel = summonerLevel;
     }
 
+
+    @Override
+    public String toString(){
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+    }
 
 }

@@ -1,5 +1,8 @@
 package com.jp.domain;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+
 /**
  * Created by JP on 9/4/2017.
  */
@@ -67,5 +70,10 @@ public class League {
 
     public void setTier(String tier) {
         this.tier = tier;
+    }
+
+    @Override
+    public String toString(){
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
 }
