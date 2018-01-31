@@ -2,8 +2,9 @@ package com.jp.domain;
 
 
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -89,7 +90,7 @@ public class Summoner {
 
     @Override
     public String toString(){
-        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
     }
 
 }
