@@ -1,8 +1,15 @@
 
 
+logging:
+  level:
+    root: INFO
+    com.jp: DEBUG
+
+
 riot:
   api:
-    key: SOME_KEY
+    # this key is just a transient dev key
+    key: RGAPI-b824af1b-af22-4fd4-9d2b-aa9092ce5c89
     url:
       na: 'https://na1.api.riotgames.com'
       apiKey: '?api_key={apiKey}'
@@ -11,3 +18,4 @@ riot:
       spectator: '/lol/spectator/v3/active-games/by-summoner/{summonerId}'
   tlsjpa:
     id: 20022284
+
