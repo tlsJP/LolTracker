@@ -31,6 +31,8 @@ public class LeagueClient {
 
 
     public Set<League> getLeaguesBySummonerId(Long summonerId) {
+        logger.info("getLeaguesBySummonerId({})", summonerId);
+
         Map<String, String> parameters = new HashMap<>();
         parameters.put("summonerId", summonerId.toString());
         parameters.put("apiKey", riotConfiguration.getApiKey());
@@ -39,8 +41,9 @@ public class LeagueClient {
 
         List<League> mappedLeagues = mapper.mapAsList(Arrays.stream(leagues).collect(Collectors.toList()), League.class);
 
-        Set<League> leagueSet = new HashSet<>();
-        leagueSet.addAll(mappedLeagues);
+        Set<League> leagueSet = new HashSet<>(mappedLeagues);
+
+        logger.debug("{}", leagueSet);
 
         return leagueSet;
     }
