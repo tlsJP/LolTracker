@@ -2,6 +2,7 @@ package com.jp.riot.api.summoner;
 
 
 import com.jp.domain.Summoner;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
+@Ignore
 public class SummonerClientTest {
 
     @Autowired
