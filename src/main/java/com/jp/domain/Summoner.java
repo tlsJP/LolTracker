@@ -17,11 +17,6 @@ import java.util.Set;
 public class Summoner {
 
 
-    /**
-     * This is the db PK
-     */
-    @Id
-    private Long id;
 
     private String name;
     private Long summonerId;
@@ -38,13 +33,6 @@ public class Summoner {
 
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Summoner summoner = (Summoner) o;
-        return Objects.equals(id, summoner.id);
-    }
 
     public Long getAccountId() {
         return accountId;
@@ -57,9 +45,7 @@ public class Summoner {
         return encounters;
     }
 
-    public Long getId() {
-        return id;
-    }
+
 
     public Set<League> getLeagues() {
         if (leagues == null) {
@@ -80,19 +66,13 @@ public class Summoner {
         return summonerLevel;
     }
 
-    @Override
-    public int hashCode() {
 
-        return Objects.hash(id);
-    }
 
     public void setAccountId(Long accountId) {
         this.accountId = accountId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+
 
     public void setName(String name) {
         this.name = name;

@@ -29,7 +29,7 @@ public class SummonerClientTest {
         Summoner result = client.getSummonerByName("tlsJPA");
 
         assertNotNull(result);
-        assertNotNull(result.getId());
+        assertNotNull(result.getSummonerId());
 
     }
 }

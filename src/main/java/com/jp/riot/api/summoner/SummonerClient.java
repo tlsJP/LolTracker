@@ -41,7 +41,7 @@ public class SummonerClient {
 
         Summoner summoner = mapper.map(result, Summoner.class);
 
-        summoner.getLeagues().addAll(leagueClient.getLeaguesBySummonerId(summoner.getId()));
+        summoner.getLeagues().addAll(leagueClient.getLeaguesBySummonerId(summoner.getSummonerId()));
 
         logger.debug("{}", summoner);
 
