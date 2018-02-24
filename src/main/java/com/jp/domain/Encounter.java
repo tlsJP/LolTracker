@@ -8,24 +8,17 @@ import java.time.ZonedDateTime;
 public class Encounter {
 
 
-    private Long summonerId;
-    private ZonedDateTime encounterTimestamp;
+    // from CurrentGameInfo
+    private Long gameId;
+    private Long gameStartTime;
+    private String platformId;
+    private String gameMode;
+    private Long mapId;
+    private String gameType;
+
     private Boolean positive;
     private Boolean ally;
-
-    public Encounter(Long summonerId) {
-        this.summonerId = summonerId;
-    }
-
-    public Encounter(Long summonerId, ZonedDateTime encounterTimestamp) {
-        this.summonerId = summonerId;
-        this.encounterTimestamp = encounterTimestamp;
-    }
-
-    public Encounter() {
-
-    }
-
+    private ZonedDateTime encounterTimestamp;
 
     public Boolean getAlly() {
         return ally;
@@ -35,15 +28,33 @@ public class Encounter {
         return encounterTimestamp;
     }
 
+    public Long getGameId() {
+        return gameId;
+    }
+
+    public String getGameMode() {
+        return gameMode;
+    }
+
+    public Long getGameStartTime() {
+        return gameStartTime;
+    }
+
+    public String getGameType() {
+        return gameType;
+    }
+
+    public Long getMapId() {
+        return mapId;
+    }
+
+    public String getPlatformId() {
+        return platformId;
+    }
 
     public Boolean getPositive() {
         return positive;
     }
-
-    public Long getSummonerId() {
-        return summonerId;
-    }
-
 
     public void setAlly(Boolean ally) {
         this.ally = ally;
@@ -53,12 +64,31 @@ public class Encounter {
         this.encounterTimestamp = encounterTimestamp;
     }
 
+    public void setGameId(Long gameId) {
+        this.gameId = gameId;
+    }
+
+    public void setGameMode(String gameMode) {
+        this.gameMode = gameMode;
+    }
+
+    public void setGameStartTime(Long gameStartTime) {
+        this.gameStartTime = gameStartTime;
+    }
+
+    public void setGameType(String gameType) {
+        this.gameType = gameType;
+    }
+
+    public void setMapId(Long mapId) {
+        this.mapId = mapId;
+    }
+
+    public void setPlatformId(String platformId) {
+        this.platformId = platformId;
+    }
 
     public void setPositive(Boolean positive) {
         this.positive = positive;
-    }
-
-    public void setSummonerId(Long summonerId) {
-        this.summonerId = summonerId;
     }
 }
