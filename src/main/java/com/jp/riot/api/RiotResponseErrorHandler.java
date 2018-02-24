@@ -18,7 +18,6 @@ public class RiotResponseErrorHandler extends DefaultResponseErrorHandler {
 
     @Override
     public void handleError(ClientHttpResponse response) throws IOException {
-        logger.error(response.getStatusCode().toString() + ":" + response.getStatusText());
-
+        logger.error("{} : {}", response.getStatusCode(), response.getStatusText());
     }
 }
