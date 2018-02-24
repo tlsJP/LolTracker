@@ -1,14 +1,13 @@
 package com.jp.domain;
 
 
-
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.data.annotation.Id;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -25,13 +24,14 @@ public class Summoner {
     private Long id;
 
     private String name;
+    private Long summonerId;
     private Long summonerLevel;
     private Long accountId;
     private Set<Encounter> encounters;
     private Set<League> leagues;
 
-    public Summoner(Long id) {
-        this.id = id;
+    public Summoner(Long summonerId) {
+        this.summonerId = summonerId;
     }
 
     public Summoner() {
@@ -42,11 +42,8 @@ public class Summoner {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Summoner summoner = (Summoner) o;
-
-        if (id != null ? !id.equals(summoner.id) : summoner.id != null) return false;
-        return accountId != null ? accountId.equals(summoner.accountId) : summoner.accountId == null;
+        return Objects.equals(id, summoner.id);
     }
 
     public Long getAccountId() {
@@ -75,15 +72,18 @@ public class Summoner {
         return name;
     }
 
+    public Long getSummonerId() {
+        return summonerId;
+    }
+
     public Long getSummonerLevel() {
         return summonerLevel;
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (accountId != null ? accountId.hashCode() : 0);
-        return result;
+
+        return Objects.hash(id);
     }
 
     public void setAccountId(Long accountId) {
@@ -98,13 +98,17 @@ public class Summoner {
         this.name = name;
     }
 
+    public void setSummonerId(Long summonerId) {
+        this.summonerId = summonerId;
+    }
+
     public void setSummonerLevel(Long summonerLevel) {
         this.summonerLevel = summonerLevel;
     }
 
 
     @Override
-    public String toString(){
+    public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
     }
 
