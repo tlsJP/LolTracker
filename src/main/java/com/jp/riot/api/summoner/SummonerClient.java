@@ -21,7 +21,7 @@ public class SummonerClient {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
-    RiotConfiguration riotConfiguration;
+    private RiotConfiguration riotConfiguration;
     @Autowired
     private RestTemplate restTemplate;
     @Autowired
