@@ -18,7 +18,7 @@ public class Summoner {
 
 
     /**
-     * This is the summonerId
+     * This is the db PK
      */
     @Id
     private Long id;
