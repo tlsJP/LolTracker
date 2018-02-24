@@ -22,7 +22,7 @@ import java.util.Map;
  * Created by JP on 9/3/2017.
  */
 @Component
-public class GameMonitor {
+class GameMonitor {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
@@ -37,11 +37,19 @@ public class GameMonitor {
     @Autowired
     private SummonerClient summonerclient;
 
+    private static boolean isMe(CurrentGameParticipant p) {
+        return !isNotMe(p);
+    }
+
+    private static boolean isNotMe(CurrentGameParticipant p) {
+        return !"tlsJPA".equals(p.getSummonerName());
+    }
+
     @Scheduled(fixedDelay = 120000)
     private void checkForGame() {
 
         CurrentGameInfo currentGameInfo = spectatorClient.getCurrentGameInfo(tlsJpaSummonerId);
-        if (currentGameInfo.getGameId() == null) {
+        if (currentGameInfo == null || currentGameInfo.getGameId() == null) {
             return;
         }
 
@@ -73,31 +81,39 @@ public class GameMonitor {
         currentGameInfo.getParticipants()
                 .stream()
                 .filter(GameMonitor::isNotMe)
-                .map(p -> {
-                    Summoner result = summonerRepository.findOne(p.getSummonerId());
-                    if (result == null) {
-                        result = new Summoner(p.getSummonerId());
-                        result.setName(p.getSummonerName());
-                    }
-                    allyMap.put(result.getId(), meInGame.getTeamId().equals(p.getTeamId()));
-                    return result;
-                })
-                // Add encounter to the summoner
+                .peek(p -> allyMap.put(p.getSummonerId(), meInGame.getTeamId().equals(p.getTeamId())))
+                .map(this::toSummoner)
                 .peek(s -> {
-                    Encounter e = new Encounter(s.getId(), now);
+                    Encounter e = maptoEncounter(currentGameInfo);
+
+                    e.setAlly(allyMap.get(s.getSummonerId()));
+                    e.setEncounterTimestamp(now);
+
                     s.getEncounters().add(e);
-                    e.setAlly(allyMap.get(e.getSummonerId()));
                 })
                 .forEach(summonerRepository::save);
 
 
     }
 
-    private static boolean isMe(CurrentGameParticipant p) {
-        return !isNotMe(p);
+    private static Encounter maptoEncounter(CurrentGameInfo currentGameInfo) {
+        Encounter e = new Encounter();
+
+        e.setGameId(currentGameInfo.getGameId());
+        e.setGameMode(currentGameInfo.getGameMode());
+        e.setGameStartTime(currentGameInfo.getGameStartTime());
+        e.setMapId(currentGameInfo.getMapId());
+        e.setPlatformId(currentGameInfo.getPlatformId());
+        return e;
     }
 
-    private static boolean isNotMe(CurrentGameParticipant p) {
-        return !"tlsJPA".equals(p.getSummonerName());
+    private Summoner toSummoner(CurrentGameParticipant p) {
+        Summoner result = summonerRepository.findOne(p.getSummonerId());
+        if (result == null) {
+            result = new Summoner(p.getSummonerId());
+            result.setName(p.getSummonerName());
+        }
+
+        return result;
     }
 }
