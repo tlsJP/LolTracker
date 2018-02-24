@@ -3,8 +3,10 @@ package com.jp.domain;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.springframework.data.annotation.Id;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,9 +14,14 @@ import java.util.Set;
 /**
  * Created by JP on 9/4/2017.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Summoner {
 
 
+    /**
+     * This is the summonerId
+     */
+    @Id
     private Long id;
 
     private String name;
@@ -22,6 +29,14 @@ public class Summoner {
     private Long accountId;
     private Set<Encounter> encounters;
     private Set<League> leagues;
+
+    public Summoner(Long id) {
+        this.id = id;
+    }
+
+    public Summoner() {
+
+    }
 
     @Override
     public boolean equals(Object o) {
