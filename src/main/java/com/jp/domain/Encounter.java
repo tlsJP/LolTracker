@@ -7,24 +7,34 @@ import java.time.ZonedDateTime;
  */
 public class Encounter {
 
+
     private Long summonerId;
     private ZonedDateTime encounterTimestamp;
     private Boolean positive;
+    private Boolean ally;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public Encounter(Long summonerId) {
+        this.summonerId = summonerId;
+    }
 
-        Encounter encounter = (Encounter) o;
+    public Encounter(Long summonerId, ZonedDateTime encounterTimestamp) {
+        this.summonerId = summonerId;
+        this.encounterTimestamp = encounterTimestamp;
+    }
 
-        if (summonerId != null ? !summonerId.equals(encounter.summonerId) : encounter.summonerId != null) return false;
-        return encounterTimestamp != null ? encounterTimestamp.equals(encounter.encounterTimestamp) : encounter.encounterTimestamp == null;
+    public Encounter() {
+
+    }
+
+
+    public Boolean getAlly() {
+        return ally;
     }
 
     public ZonedDateTime getEncounterTimestamp() {
         return encounterTimestamp;
     }
+
 
     public Boolean getPositive() {
         return positive;
@@ -34,16 +44,15 @@ public class Encounter {
         return summonerId;
     }
 
-    @Override
-    public int hashCode() {
-        int result = summonerId != null ? summonerId.hashCode() : 0;
-        result = 31 * result + (encounterTimestamp != null ? encounterTimestamp.hashCode() : 0);
-        return result;
+
+    public void setAlly(Boolean ally) {
+        this.ally = ally;
     }
 
     public void setEncounterTimestamp(ZonedDateTime encounterTimestamp) {
         this.encounterTimestamp = encounterTimestamp;
     }
+
 
     public void setPositive(Boolean positive) {
         this.positive = positive;
