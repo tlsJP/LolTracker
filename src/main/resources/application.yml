@@ -1,5 +1,12 @@
 
 
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: loltracker
+
 logging:
   level:
     root: INFO
@@ -9,7 +16,7 @@ logging:
 riot:
   api:
     # this key is just a transient dev key
-    key: RGAPI-b824af1b-af22-4fd4-9d2b-aa9092ce5c89
+    key: RGAPI-48904141-392f-45c4-96f2-c5a3fe89a946
     url:
       na: 'https://na1.api.riotgames.com'
       apiKey: '?api_key={apiKey}'
